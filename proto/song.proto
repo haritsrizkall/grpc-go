@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option go_package = "github.com/haritsrizkall/grpc-go/pb";
+
+package song;
+
+message Song {
+  string title = 1;
+  string artist = 2;
+  string album = 3;
+}
+
+message SongRequest {
+  string title = 1;
+}
+
+message SongResponse {
+  Song song = 1;
+}
+
+service SongService {
+  rpc GetSong(SongRequest) returns (SongResponse);
+}
