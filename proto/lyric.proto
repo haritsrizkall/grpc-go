@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+option go_package = "github.com/haritsrizkall/grpc-go/pb";
+
+package lyric;
+
+message Lyric {
+  string id = 1;
+  string song_title = 2;
+  int32 duration = 3;
+  int32 order = 4;
+  string content = 5;
+}
+
+message GetSongLyricsRequest {
+  string song_title = 1;
+}
+
+message SongLyrics {
+  repeated Lyric lyrics = 1;
+}
+
+message UpdateLyricRequest {
+  string id = 1;
+  string song_title = 2;
+  int32 duration = 3;
+  int32 order = 4;
+  string content = 5;
+}
+
+service LyricService {
+  rpc AddLyric(Lyric) returns (Lyric) {}
+  rpc GetSongLyrics(GetSongLyricsRequest) returns (stream Lyric) {}
+  rpc UpdateLyric(UpdateLyricRequest) returns (Lyric) {}
+}
