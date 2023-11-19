@@ -18,6 +18,19 @@ message SongResponse {
   Song song = 1;
 }
 
+message SongsResponse {
+  repeated Song songs = 1;
+}
+
+message DeleteSongRequest {
+  string title = 1;
+}
+
+message EmptyRequest {}
+
 service SongService {
   rpc GetSong(SongRequest) returns (SongResponse);
+  rpc GetAllSongs(EmptyRequest) returns (SongsResponse);
+  rpc AddSong(Song) returns (SongResponse);
+  rpc DeleteSong(DeleteSongRequest) returns (SongResponse);
 }
